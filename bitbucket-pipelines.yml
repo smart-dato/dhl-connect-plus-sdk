@@ -1,0 +1,74 @@
+image: php:8.4
+
+pipelines:
+  default:
+    - step:
+        name: Run Tests (PHP 8.4, Laravel 12, prefer-stable)
+        script:
+          - apt-get update && apt-get install -y git unzip libzip-dev libxml2-dev libcurl4-openssl-dev libonig-dev libpng-dev libjpeg-dev libfreetype6-dev
+          - docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+          - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+          - composer require "laravel/framework:12.*" "orchestra/testbench:10.*" --no-interaction --no-update
+          - composer update --prefer-stable --prefer-dist --no-interaction
+          - vendor/bin/pest --ci
+    - parallel:
+        - step:
+            name: Run Tests (PHP 8.3, Laravel 11, prefer-stable)
+            script:
+              - apt-get update && apt-get install -y git unzip libzip-dev libxml2-dev libcurl4-openssl-dev libonig-dev libpng-dev libjpeg-dev libfreetype6-dev
+              - docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+              - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+              - composer require "laravel/framework:11.*" "orchestra/testbench:9.*" --no-interaction --no-update
+              - composer update --prefer-stable --prefer-dist --no-interaction
+              - vendor/bin/pest --ci
+        - step:
+            name: Run Tests (PHP 8.4, Laravel 12, prefer-lowest)
+            script:
+              - apt-get update && apt-get install -y git unzip libzip-dev libxml2-dev libcurl4-openssl-dev libonig-dev libpng-dev libjpeg-dev libfreetype6-dev
+              - docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+              - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+              - composer require "laravel/framework:12.*" "orchestra/testbench:10.*" --no-interaction --no-update
+              - composer update --prefer-lowest --prefer-dist --no-interaction
+              - vendor/bin/pest --ci
+        - step:
+            name: Run Tests (PHP 8.3, Laravel 11, prefer-lowest)
+            script:
+              - apt-get update && apt-get install -y git unzip libzip-dev libxml2-dev libcurl4-openssl-dev libonig-dev libpng-dev libjpeg-dev libfreetype6-dev
+              - docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+              - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+              - composer require "laravel/framework:11.*" "orchestra/testbench:9.*" --no-interaction --no-update
+              - composer update --prefer-lowest --prefer-dist --no-interaction
+              - vendor/bin/pest --ci
+  branches:
+    main:
+      - step:
+          name: PHPStan
+          script:
+            - apt-get update && apt-get install -y git unzip
+            - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+            - composer install --no-interaction --prefer-dist --optimize-autoloader
+            - vendor/bin/phpstan analyse
+      - step:
+          name: Fix PHP Code Style
+          script:
+            - apt-get update && apt-get install -y git unzip
+            - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+            - composer install --no-interaction --prefer-dist --optimize-autoloader
+            - vendor/bin/pint --test
+          artifacts:
+            - '**/*.php'
+  tags:
+    '*':
+      - step:
+          name: Update Changelog
+          script:
+            - apt-get update && apt-get install -y git unzip
+            - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+            - composer install --no-interaction --prefer-dist --optimize-autoloader
+            - |
+              VERSION=$(echo $BITBUCKET_TAG | sed 's/^v//')
+              RELEASE_NOTES=$(git log --oneline --pretty=format:"%s" $(git describe --tags --abbrev=0 HEAD~1)..HEAD | tr '\n' '; ')
+              sed -i "1i ## [$VERSION] - $(date +%Y-%m-%d)\n\n$RELEASE_NOTES\n" CHANGELOG.md
+            - git add CHANGELOG.md
+            - git commit -m "Update CHANGELOG for $BITBUCKET_TAG"
+            - git push origin main

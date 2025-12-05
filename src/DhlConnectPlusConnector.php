@@ -5,7 +5,6 @@ namespace SmartDato\DhlConnectPlusClient;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
 use Saloon\Http\PendingRequest;
-use SensitiveParameter;
 use SmartDato\DhlConnectPlusClient\Dto\Output\Authentication\Token;
 use SmartDato\DhlConnectPlusClient\Requests\Authentication\Authenticate;
 

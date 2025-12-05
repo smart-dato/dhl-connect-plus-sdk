@@ -1,12 +1,13 @@
 {
-    "name": "developer/dhl-connect-plus",
-    "description": "This is my package dhl-connect-plus",
+    "name": "smart-dato/dhl-connect-plus-sdk",
+    "description": "A PHP SDK for integrating with DHL Parcel Iberia's CIMAPI (Customer Integration Management API). This package provides an easy-to-use interface for creating shipments, tracking packages, managing pickups, finding service points, and handling end-of-day operations for B2B and B2C deliveries across Spain and Portugal.",
     "keywords": [
         "SmartDato",
         "laravel",
-        "dhl-connect-plus"
+        "dhl-connect-plus",
+        "SDK"
     ],
-    "homepage": "https://github.com/developer/dhl-connect-plus",
+    "homepage": "https://github.com/smart-dato/dhl-connect-plus-sdk",
     "license": "MIT",
     "authors": [
         {

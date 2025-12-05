@@ -13,30 +13,12 @@ pipelines:
           - vendor/bin/pest --ci
     - parallel:
         - step:
-            name: Run Tests (PHP 8.3, Laravel 11, prefer-stable)
-            script:
-              - apt-get update && apt-get install -y git unzip libzip-dev libxml2-dev libcurl4-openssl-dev libonig-dev libpng-dev libjpeg-dev libfreetype6-dev
-              - docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
-              - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-              - composer require "laravel/framework:11.*" "orchestra/testbench:9.*" --no-interaction --no-update
-              - composer update --prefer-stable --prefer-dist --no-interaction
-              - vendor/bin/pest --ci
-        - step:
             name: Run Tests (PHP 8.4, Laravel 12, prefer-lowest)
             script:
               - apt-get update && apt-get install -y git unzip libzip-dev libxml2-dev libcurl4-openssl-dev libonig-dev libpng-dev libjpeg-dev libfreetype6-dev
               - docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
               - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
               - composer require "laravel/framework:12.*" "orchestra/testbench:10.*" --no-interaction --no-update
-              - composer update --prefer-lowest --prefer-dist --no-interaction
-              - vendor/bin/pest --ci
-        - step:
-            name: Run Tests (PHP 8.3, Laravel 11, prefer-lowest)
-            script:
-              - apt-get update && apt-get install -y git unzip libzip-dev libxml2-dev libcurl4-openssl-dev libonig-dev libpng-dev libjpeg-dev libfreetype6-dev
-              - docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
-              - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-              - composer require "laravel/framework:11.*" "orchestra/testbench:9.*" --no-interaction --no-update
               - composer update --prefer-lowest --prefer-dist --no-interaction
               - vendor/bin/pest --ci
   branches:

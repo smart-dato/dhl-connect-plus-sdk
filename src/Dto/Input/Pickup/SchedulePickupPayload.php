@@ -9,7 +9,8 @@ use Spatie\LaravelData\Data;
 class SchedulePickupPayload extends Data
 {
     public function __construct(
-
+        #[MapOutputName('Customer')]
+        public string $customerId,
         #[MapOutputName('ContactName')]
         public string $contactName,
         #[MapOutputName('Quantity')]

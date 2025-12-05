@@ -18,9 +18,13 @@ use SmartDato\DhlConnectPlusClient\Enums\Show;
  * @property Show|null $show show : opcional, EVENTS , STATUS or BOTH
  * @property Level|null $level level : opcional. PARCEL (events, status in parcel level)
  */
-class Track extends Request
+class TrackAllEvents extends Request
 {
     protected Method $method = Method::GET;
+
+    public function __construct(
+        private readonly string $customerId,
+    ) {}
 
     public function resolveEndpoint(): string
     {
@@ -30,7 +34,7 @@ class Track extends Request
     protected function defaultQuery(): array
     {
         return [
-            'id' => config('dhl-connect-plus-sdk.auth.customer_id'),
+            'id' => $this->customerId,
             'show' => 'AllEvents',
         ];
     }

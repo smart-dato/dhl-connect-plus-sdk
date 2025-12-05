@@ -13,14 +13,9 @@ class DhlConnectPlusConnector extends Connector
 {
     private ?Token $authToken = null;
 
-    public function __construct(
-        #[SensitiveParameter]
-        private ?string $token = null,
-    ) {}
-
     public function setToken(Token $token): static
     {
-        $this->token = $token->getToken();
+        $this->authToken = $token;
 
         return $this;
     }
@@ -53,8 +48,10 @@ class DhlConnectPlusConnector extends Connector
         );
         $authResponse = $this->send($request);
 
+        $this->authToken = $authResponse->dtoOrFail();
+
         $pendingRequest->authenticate(
-            new TokenAuthenticator($authResponse->dtoOrFail()->getToken())
+            new TokenAuthenticator($this->authToken->getToken())
         );
     }
 

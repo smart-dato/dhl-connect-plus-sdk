@@ -30,6 +30,7 @@ test('track success', function (): void {
     $connector = new DhlConnectPlusConnector;
     $connector->withMockClient($mockClient);
     $payload = new CreateShipmentPayload(
+        customerId: '#randomId',
         quantity: 2,
         weight: 5,
         incoterms: 'CPT',

@@ -27,10 +27,7 @@ class Create extends Request implements HasBody
 
     public function defaultBody(): array
     {
-        return [
-            'Customer' => config('dhl-connect-plus-sdk.auth.customer_id'),
-            ...$this->payload->toArray(),
-        ];
+        return $this->payload->toArray();
     }
 
     public function createDtoFromResponse(Response $response): LabelResponse

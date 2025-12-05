@@ -2,6 +2,7 @@
 
 namespace SmartDato\DhlConnectPlusClient\Dto\Output\Authentication;
 
+use SensitiveParameter;
 use Spatie\LaravelData\Data;
 
 class Token extends Data

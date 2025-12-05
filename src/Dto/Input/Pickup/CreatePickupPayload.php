@@ -15,6 +15,8 @@ use Spatie\LaravelData\Data;
 class CreatePickupPayload extends Data
 {
     public function __construct(
+        #[MapOutputName('Customer')]
+        public string $customerId,
         #[MapOutputName('Quantity')]
         public int $quantity,
         #[MapOutputName('Weight')]

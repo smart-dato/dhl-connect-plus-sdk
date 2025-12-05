@@ -1,6 +1,6 @@
 <?php
 
-namespace SmartDato\DhlConnectPlusClient\Requests\Shipment;
+namespace SmartDato\DhlConnectPlusClient\Requests\Pickup;
 
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
@@ -28,10 +28,7 @@ class Schedule extends Request implements HasBody
 
     public function defaultBody(): array
     {
-        return [
-            'Customer' => config('dhl-connect-plus-sdk.auth.customer_id'),
-            ...$this->payload->toArray(),
-        ];
+        return $this->payload->toArray();
     }
 
     public function createDtoFromResponse(Response $response): ScheduleResponse

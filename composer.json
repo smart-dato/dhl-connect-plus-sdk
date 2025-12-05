@@ -64,10 +64,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "SmartDato\\DhlConnectPlus\\DhlConnectPlusServiceProvider"
+                "SmartDato\\DhlConnectPlusClient\\DhlConnectPlusClientServiceProvider"
             ],
             "aliases": {
-                "DhlConnectPlus": "SmartDato\\DhlConnectPlus\\Facades\\DhlConnectPlus"
+                "DhlConnectPlus": "SmartDato\\DhlConnectPlusClient\\Facades\\DhlConnectPlus"
             }
         }
     },

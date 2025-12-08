@@ -27,7 +27,7 @@ class SchedulePickupPayload extends Data
         public string $remarks,
         #[MapOutputName('Sender')]
         public ?Sender $sender,
-        #[MapOutputName('Pickup')]
-        public ?string $pickup = null,
+        #[MapOutputName('Product')]
+        public ?string $product = null,
     ) {}
 }

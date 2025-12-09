@@ -3,6 +3,7 @@
 namespace SmartDato\DhlConnectPlusClient\Dto\Input\Shipment;
 
 use SmartDato\DhlConnectPlusClient\Enums\Feature;
+use SmartDato\DhlConnectPlusClient\Enums\Product;
 use SmartDato\DhlConnectPlusClient\Enums\ServiceType;
 use Spatie\LaravelData\Attributes\MapOutputName;
 use Spatie\LaravelData\Attributes\Validation\Max;
@@ -11,6 +12,7 @@ use Spatie\LaravelData\Data;
 
 /**
  * @property string $serviceType Only for Delivery in Canary Islands– Azores- Madeira M – Maritim service A – Air Service
+ * @property Product|null $product  product = "" is considered as B2B product.
  * @property Feature[] $features
  */
 class CreateShipmentPayload extends Data
@@ -84,8 +86,7 @@ class CreateShipmentPayload extends Data
         #[Max(3)]
         public ?string $format = null,
         #[MapOutputName('Product')]
-        #[Max(3)]
-        public ?string $product = null,
+        public ?Product $product = Product::B2B,
         #[MapOutputName('Features')]
         public ?array $features = null,
         #[MapOutputName('Lp')]

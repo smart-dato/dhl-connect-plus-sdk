@@ -12,7 +12,7 @@ use Spatie\LaravelData\Data;
 
 /**
  * @property string $serviceType Only for Delivery in Canary Islands– Azores- Madeira M – Maritim service A – Air Service
- * @property Product|null $product  product = "" is considered as B2B product.
+ * @property Product|null $product product = "" is considered as B2B product.
  * @property Feature[] $features
  */
 class CreateShipmentPayload extends Data

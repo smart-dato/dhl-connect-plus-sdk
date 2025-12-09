@@ -1,7 +1,7 @@
 # DHL Connect Plus
 
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/developer/dhl-connect-plus/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/developer/dhl-connect-plus/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/developer/dhl-connect-plus/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/developer/dhl-connect-plus/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/smart-dato/dhl-connect-plus-sdk/run-tests.yml?branch=master&label=tests&style=flat-square)](https://github.com/smart-dato/dhl-connect-plus-sdk/actions?query=workflow%3Arun-tests+branch%3Amaster)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/smart-dato/dhl-connect-plus-sdk/fix-php-code-style-issues.yml?branch=master&label=code%20style&style=flat-square)](https://github.com/smart-dato/dhl-connect-plus-sdk/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amaster)
 
 A PHP SDK for integrating with DHL Parcel Iberia's CIMAPI (Customer Integration Management API). This package provides an easy-to-use interface for creating shipments, tracking packages, managing pickups, finding service points, and handling end-of-day operations for B2B and B2C deliveries across Spain and Portugal.
 

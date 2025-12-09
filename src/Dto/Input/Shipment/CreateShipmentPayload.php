@@ -3,6 +3,7 @@
 namespace SmartDato\DhlConnectPlusClient\Dto\Input\Shipment;
 
 use SmartDato\DhlConnectPlusClient\Enums\Feature;
+use SmartDato\DhlConnectPlusClient\Enums\ServiceType;
 use Spatie\LaravelData\Attributes\MapOutputName;
 use Spatie\LaravelData\Attributes\Validation\Max;
 use Spatie\LaravelData\Attributes\Validation\MaxDigits;
@@ -60,7 +61,7 @@ class CreateShipmentPayload extends Data
         public ?string $deliveryNote = null,
         #[MapOutputName('ServiceType')]
         #[Max(1)]
-        public ?string $serviceType = null,
+        public ?ServiceType $serviceType = null,
         #[MapOutputName('Remarks1')]
         #[Max(40)]
         public ?string $remarks1 = null,

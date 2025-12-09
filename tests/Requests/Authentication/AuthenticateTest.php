@@ -10,13 +10,13 @@ use SmartDato\DhlConnectPlusClient\Requests\Authentication\Authenticate;
 test('auth success', function (): void {
     $token = 'token2025';
     $mockClient = new MockClient([
-        Authenticate::class => MockResponse::make(body: $token, status: 200),
+        Authenticate::class => MockResponse::make(body: json_encode($token), status: 200),
     ]);
 
     $connector = new DhlConnectPlusConnector;
     $connector->withMockClient($mockClient);
 
-    $token = $connector->send(new Authenticate('test', 'user'));
+    $response = $connector->send(new Authenticate('test', 'user'));
 
-    expect($token->dto()->getToken())->toEqual($token);
+    expect($response->dto()->getToken())->toEqual($token);
 });

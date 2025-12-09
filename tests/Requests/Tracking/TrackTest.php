@@ -13,7 +13,7 @@ use SmartDato\DhlConnectPlusClient\Requests\Tracking\Track;
 test('track success', function (): void {
     $token = 'token2025';
     $mockClient = new MockClient([
-        Authenticate::class => MockResponse::make(body: $token, status: 200),
+        Authenticate::class => MockResponse::make(body: json_encode($token), status: 200),
         Track::class => MockResponse::make(body: [
             [
                 'DateTime' => '2020-10-01T16:24:43',

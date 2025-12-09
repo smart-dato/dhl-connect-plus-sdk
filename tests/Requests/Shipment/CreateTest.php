@@ -14,7 +14,7 @@ use SmartDato\DhlConnectPlusClient\Requests\Shipment\Create;
 test('track success', function (): void {
     $token = 'token2025';
     $mockClient = new MockClient([
-        Authenticate::class => MockResponse::make(body: $token, status: 200),
+        Authenticate::class => MockResponse::make(body: json_encode($token), status: 200),
         Create::class => MockResponse::make(body: [
             'Origin' => '08',
             'Customer' => '001000',

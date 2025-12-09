@@ -2,6 +2,7 @@
 
 namespace SmartDato\DhlConnectPlusClient\Requests\Authentication;
 
+use JsonException;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
@@ -35,9 +36,12 @@ class Authenticate extends Request implements HasBody
         return '/authenticate';
     }
 
+    /**
+     * @throws JsonException
+     */
     public function createDtoFromResponse(Response $response): Token
     {
-        $data = $response->body();
+        $data = json_decode($response->body(), flags: \JSON_THROW_ON_ERROR);
 
         return new Token($data);
     }

@@ -10,10 +10,14 @@ use SmartDato\DhlConnectPlusClient\Requests\Authentication\Authenticate;
 
 class DhlConnectPlusConnector extends Connector
 {
-    public function __construct(
-        private ?Token $authToken = null,
-        private ?string $baseUrl = null,
-    ) {}
+    private ?Token $authToken = null;
+
+    private ?string $baseUrl = null;
+
+    public function __construct(?string $baseUrl = null)
+    {
+        $this->baseUrl = $baseUrl;
+    }
 
     public function setToken(Token $token): static
     {

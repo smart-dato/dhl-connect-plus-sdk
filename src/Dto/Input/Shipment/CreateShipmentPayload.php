@@ -26,7 +26,7 @@ class CreateShipmentPayload extends Data
         public int $quantity,
         #[MapOutputName('Weight')]
         #[MaxDigits(5)]
-        public int $weight,
+        public float $weight,
         #[MapOutputName('Incoterms')]
         #[Max(3)]
         public string $incoterms,
@@ -39,7 +39,7 @@ class CreateShipmentPayload extends Data
         public ?string $reference = null,
         #[MapOutputName('WeightVolume')]
         #[MaxDigits(5)]
-        public ?int $weightVolume = null,
+        public ?float $weightVolume = null,
         #[MapOutputName('CODAmount')]
         #[MaxDigits(11)]
         public ?float $codAmount = null,

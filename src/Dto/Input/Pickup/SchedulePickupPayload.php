@@ -16,7 +16,7 @@ class SchedulePickupPayload extends Data
         #[MapOutputName('Quantity')]
         public int $quantity,
         #[MapOutputName('Weight')]
-        public int $weight,
+        public float $weight,
         #[MapOutputName('PickupDate')]
         public string $pickupDate,
         #[MapOutputName('TimeFrom')]

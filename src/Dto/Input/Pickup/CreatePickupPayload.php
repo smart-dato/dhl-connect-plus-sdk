@@ -20,7 +20,7 @@ class CreatePickupPayload extends Data
         #[MapOutputName('Quantity')]
         public int $quantity,
         #[MapOutputName('Weight')]
-        public int $weight,
+        public float $weight,
         #[MapOutputName('Sender')]
         public Sender $sender,
         #[MapOutputName('Receiver')]
@@ -28,7 +28,7 @@ class CreatePickupPayload extends Data
         #[MapOutputName('Reference')]
         public ?string $reference = null,
         #[MapOutputName('WeightVolume')]
-        public ?int $weightVolume = null,
+        public ?float $weightVolume = null,
         #[MapOutputName('InsuranceAmount')]
         public ?float $insuranceAmount = null,
         #[MapOutputName('InsuranceExpenses')]

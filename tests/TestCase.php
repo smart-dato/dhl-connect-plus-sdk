@@ -5,6 +5,12 @@ namespace SmartDato\DhlConnectPlusClient\Tests;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
 use SmartDato\DhlConnectPlusClient\DhlConnectPlusClientServiceProvider;
+use Spatie\LaravelData\Normalizers\ArrayableNormalizer;
+use Spatie\LaravelData\Normalizers\ArrayNormalizer;
+use Spatie\LaravelData\Normalizers\JsonNormalizer;
+use Spatie\LaravelData\Normalizers\ModelNormalizer;
+use Spatie\LaravelData\Normalizers\ObjectNormalizer;
+use Spatie\LaravelData\Support\Creation\ValidationStrategy;
 
 class TestCase extends Orchestra
 {
@@ -30,13 +36,13 @@ class TestCase extends Orchestra
 
         config()->set('dhl-connect-plus-sdk.base_url', 'https://external.dhl.es/cimapi/api/v1/customer');
 
-        config()->set('data.validation_strategy', \Spatie\LaravelData\Support\Creation\ValidationStrategy::OnlyRequests->value);
+        config()->set('data.validation_strategy', ValidationStrategy::OnlyRequests->value);
         config()->set('data.normalizers', [
-            \Spatie\LaravelData\Normalizers\ModelNormalizer::class,
-            \Spatie\LaravelData\Normalizers\ArrayableNormalizer::class,
-            \Spatie\LaravelData\Normalizers\ObjectNormalizer::class,
-            \Spatie\LaravelData\Normalizers\ArrayNormalizer::class,
-            \Spatie\LaravelData\Normalizers\JsonNormalizer::class,
+            ModelNormalizer::class,
+            ArrayableNormalizer::class,
+            ObjectNormalizer::class,
+            ArrayNormalizer::class,
+            JsonNormalizer::class,
         ]);
         config()->set('data.max_transformation_depth', 512);
         config()->set('data.throw_when_max_transformation_depth_reached', 512);

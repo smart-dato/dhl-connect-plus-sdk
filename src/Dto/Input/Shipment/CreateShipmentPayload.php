@@ -8,6 +8,7 @@ use SmartDato\DhlConnectPlusClient\Enums\ServiceType;
 use Spatie\LaravelData\Attributes\MapOutputName;
 use Spatie\LaravelData\Attributes\Validation\Max;
 use Spatie\LaravelData\Attributes\Validation\MaxDigits;
+use Spatie\LaravelData\Attributes\Validation\Numeric;
 use Spatie\LaravelData\Data;
 
 /**
@@ -25,7 +26,8 @@ class CreateShipmentPayload extends Data
         #[MaxDigits(3)]
         public int $quantity,
         #[MapOutputName('Weight')]
-        #[MaxDigits(5)]
+        #[Numeric]
+        #[Max(99999)]
         public float $weight,
         #[MapOutputName('Incoterms')]
         #[Max(3)]
@@ -38,10 +40,12 @@ class CreateShipmentPayload extends Data
         #[Max(35)]
         public ?string $reference = null,
         #[MapOutputName('WeightVolume')]
-        #[MaxDigits(5)]
+        #[Numeric]
+        #[Max(99999)]
         public ?float $weightVolume = null,
         #[MapOutputName('CODAmount')]
-        #[MaxDigits(11)]
+        #[Numeric]
+        #[Max(99999999999)]
         public ?float $codAmount = null,
         #[MapOutputName('CODExpenses')]
         #[Max(1)]
@@ -50,7 +54,8 @@ class CreateShipmentPayload extends Data
         #[Max(3)]
         public ?string $codCurrency = null,
         #[MapOutputName('InsuranceAmount')]
-        #[MaxDigits(9)]
+        #[Numeric]
+        #[Max(999999999)]
         public ?float $insuranceAmount = null,
         #[MapOutputName('InsuranceExpenses')]
         #[Max(1)]
@@ -77,7 +82,8 @@ class CreateShipmentPayload extends Data
         #[Max(70)]
         public ?string $goodsDescription = null,
         #[MapOutputName('CustomsValue')]
-        #[MaxDigits(15)]
+        #[Numeric]
+        #[Max(999999999999999)]
         public ?float $customsValue = null,
         #[MapOutputName('CustomsCurrency')]
         #[Max(3)]

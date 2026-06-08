@@ -94,4 +94,21 @@ class CreateShipmentPayload extends Data
         #[MapOutputName('Customs')]
         public ?Customs $customs = null,
     ) {}
+
+    /**
+     * DHL rejects the Incoterms ("Clave de Portes") field on non-customs shipments,
+     * even when it is null, so the key must be omitted entirely in that case.
+     *
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        $data = parent::toArray();
+
+        if ($this->incoterms === null) {
+            unset($data['Incoterms']);
+        }
+
+        return $data;
+    }
 }

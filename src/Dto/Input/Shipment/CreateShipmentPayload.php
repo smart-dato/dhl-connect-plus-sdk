@@ -29,7 +29,7 @@ class CreateShipmentPayload extends Data
         public float $weight,
         #[MapOutputName('Incoterms')]
         #[Max(3)]
-        public string $incoterms,
+        public ?string $incoterms,
         #[MapOutputName('Receiver')]
         public Receiver $receiver,
         #[MapOutputName('Sender')]
